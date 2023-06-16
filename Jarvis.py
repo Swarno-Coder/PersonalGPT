@@ -135,9 +135,7 @@ def call(query):
                             if('0xdd'=='q'):
                                 #p.stop()
                                 break
-                
-                
-
+                            
         elif 'send messege' in query:
             print('send messege to whom?')
             speak('send messege to whom?')
@@ -219,8 +217,8 @@ if __name__ == '__main__':
     some = takeCommand()
     
     
-    if 'alexa' or 'hey alexa' in some:
-        some = some.replace('hey alexa' ,'')
+    if 'jarvis' or 'hey jarvis' in some:
+        some = some.replace('hey jarvis' ,'')
         print(some)
         call(some)
 
