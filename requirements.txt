@@ -7,7 +7,7 @@ wikipedia
 google
 langchain
 gpt4all
-chromadb
+faiss-cpu
 llama-cpp-python
 urllib3
 pdfminer.six
