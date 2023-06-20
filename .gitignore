@@ -2,3 +2,5 @@ pywhatkit_dbs.txt
 ./vscode
 /venv/
 test*.*
+/db
+/__pycache__

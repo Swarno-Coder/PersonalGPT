@@ -215,8 +215,6 @@ def call(query):
 if __name__ == '__main__':
     wishme()
     some = takeCommand()
-    
-    
     if 'jarvis' or 'hey jarvis' in some:
         some = some.replace('hey jarvis' ,'')
         print(some)
