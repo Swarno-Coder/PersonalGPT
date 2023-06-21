@@ -7,8 +7,10 @@ wikipedia
 google
 langchain
 gpt4all
-faiss-cpu
 llama-cpp-python
+openai
+cohere
+deeplake
 urllib3
 pdfminer.six
 python-dotenv==1.0.0
@@ -18,3 +20,5 @@ tabulate==0.9.0
 pandoc==2.3
 pypandoc==1.11
 tqdm==4.65.0
+glob
+kaldi

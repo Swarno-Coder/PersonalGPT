@@ -32,6 +32,7 @@ from langchain.document_loaders import (
 
 # Set model name and path
 MODEL_TYPE='GPT4All'
+API_KEY=None
 MODEL='ggml-gpt4all-j-v1.3-groovy.bin'
 MODEL_PATH=f'models/{MODEL}'
 EMBEDDINGS_MODEL_NAME='all-MiniLM-L6-v2'
@@ -39,31 +40,32 @@ MODEL_N_CTX=1000
 TARGET_SOURCE_CHUNKS=4
 
 # Set Voice model
-VOICE_REC_MODEL='SpeechRecognition'
+VOICE_REC_ENGINE='SpeechRecognition'
 VOICE_ENGINE='pyttsx3'
 
 #define root directory
 ROOT_DIRECTORY = os.path.dirname(os.path.realpath(__file__))
 # Define the folder for storing database
-SOURCE_DIRECTORY = "\source_documents"
-PERSIST_DIRECTORY = "db"
+SOURCE_DIRECTORY = os.path.join(ROOT_DIRECTORY,"source_documents")
+PERSIST_DIRECTORY = os.path.join(ROOT_DIRECTORY,"db")
 
 # Change this to the number of threads you want to use for ingestion
 INGEST_THREADS = os.cpu_count() or 8
 
 # Map the Document Loader to its file extension
 LOADER_MAP = {
-    ".txt": TextLoader,
-    ".pdf": PDFMinerLoader,
-    ".csv": CSVLoader,
-    ".xls": UnstructuredExcelLoader,
-    ".xlsx": UnstructuredExcelLoader,
-    ".ppt" : UnstructuredPowerPointLoader,
-    ".doc" : UnstructuredWordDocumentLoader,
-    ".docx" : UnstructuredWordDocumentLoader,
-    ".html" : UnstructuredHTMLLoader,
-    ".md" : UnstructuredMarkdownLoader,
-    ".epub" : UnstructuredEPubLoader,
-    ".odt" : UnstructuredODTLoader,
-    ".enex" : EverNoteLoader,
+    ".csv": (CSVLoader, {}),
+    ".doc": (UnstructuredWordDocumentLoader, {}),
+    ".docx": (UnstructuredWordDocumentLoader, {}),
+    ".enex": (EverNoteLoader, {}),
+    ".epub": (UnstructuredEPubLoader, {}),
+    ".html": (UnstructuredHTMLLoader, {}),
+    ".md": (UnstructuredMarkdownLoader, {}),
+    ".odt": (UnstructuredODTLoader, {}),
+    ".pdf": (PDFMinerLoader, {}),
+    ".ppt": (UnstructuredPowerPointLoader, {}),
+    ".pptx": (UnstructuredPowerPointLoader, {}),
+    ".txt": (TextLoader, {"encoding": "utf8"}),
+    ".xls": (UnstructuredExcelLoader,{}),
+    ".xlsx": (UnstructuredExcelLoader,{}),
 }

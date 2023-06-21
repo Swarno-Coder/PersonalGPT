@@ -1,73 +1,34 @@
-import pyttsx3 
 import datetime
-import speech_recognition as sr 
 import wikipedia
 import pyjokes
 import webbrowser
 from os import *
 import pywhatkit
 import os
-
-engine = pyttsx3.init()
-voices = engine.getProperty('voices')
-engine.setProperty('voice' , voices[1].id )
-
-
-def speak(audio):
-    engine.say(audio)
-    engine.runAndWait()
+from engine import takeCommand, speak
+from PersonalGPT import PersonalGPT
 
 def wishme():
-    print('Hello Sir,')
     speak('Hello Sir,')
     hour = int(datetime.datetime.now().hour)
-    if hour>=5 and hour<12:
-        print('Good Morning')
-        speak('Good Morning')
-    elif hour>=12 and hour<16:
-        print('Good Afternoon')
-        speak('Good Afternoon')
-    elif hour>=16 and hour<20:
-        print('Good Evening')
-        speak('Good Evening')
-    else:
-        print('Good Night')
-        speak('Good Night')
-    print('I am Alexa.\nHow can I help You?')
-    speak('I am Alexa.\nHow can I help You?')
-
-def takeCommand():
-    #This function takes command and recognize by google
-    r = sr.Recognizer()
-    with sr.Microphone() as source:
-        print('Listening...')
-        '''
-        r.pause_threshold = 1
-        r.phrase_threshold = 1
-        r.operation_timeout = 10
-        r.non_speaking_duration = 0
-        r.energy_threshold = 400
-        '''
-        r.adjust_for_ambient_noise(source)
-        audios = r.listen(source)
-    try:
-        print('Recognizing')
-        queryy = r.recognize_google(audios, language='en-IN')
-        print(f'User said : {queryy} \n')
     
-    except Exception as e:
-        print(e)
-        print('Say That again please... ')
-        speak('Say That again please... ')
-        return 'None'
-    finally:
-        return (queryy.lower())
+    if hour>=5 and hour<12: speak('Good Morning')
+    elif hour>=12 and hour<16: speak('Good Afternoon')
+    elif hour>=16 and hour<20: speak('Good Evening')
+    else: speak('Good Night')
+    
+    speak('I am Jarvis. How can I help You now?')
 
 
 def call(query):
     #This is the main executable function
     while True:
-
+        if 'wishme' in query: wishme()
+        
+        if 'load documents' or 'load my documents' in query:
+            gpt = PersonalGPT()
+        if 'search my files now':
+            gpt.ask_query()
         if 'wikipedia' in query:
             speak('Searching for wikipedia')
             queryy = query.replace('wikipedia','')
@@ -123,9 +84,9 @@ def call(query):
             if 'youtube' in ans:
                 speak('playing ' + song + ' on youtube')
                 pywhatkit.playonyt(song)
-            elif 'default player' in ans:
+            """elif 'default player' in ans:
                 speak('playing ' + song + ' on default player')
-                muDir = 'D:\\SONGS'
+                muDir = 'D:\SONGS'
                 path = os.path.join(muDir, (song + '.mp3'))
                 for root, dirs, files in os.walk(muDir):
                     for file in files:
@@ -135,6 +96,7 @@ def call(query):
                             if('0xdd'=='q'):
                                 #p.stop()
                                 break
+            """
                             
         elif 'send messege' in query:
             print('send messege to whom?')
@@ -214,11 +176,6 @@ def call(query):
 
 if __name__ == '__main__':
     wishme()
-    some = takeCommand()
-    if 'jarvis' or 'hey jarvis' in some:
-        some = some.replace('hey jarvis' ,'')
-        print(some)
-        call(some)
 
 #This whole program takes lot of time to write and frutefully execute.
 #I am Swarnodip Nag, a programmer like you.
