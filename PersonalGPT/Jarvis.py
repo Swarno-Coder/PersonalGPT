@@ -5,8 +5,8 @@ import webbrowser
 from os import *
 import pywhatkit
 import os
-from engine import takeCommand, speak
-from PersonalGPT import PersonalGPT
+from .engine import takeCommand, speak
+from .main import PersonalGPT
 
 def wishme():
     speak('Hello Sir,')

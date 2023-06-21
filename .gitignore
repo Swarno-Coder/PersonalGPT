@@ -3,4 +3,4 @@ pywhatkit_dbs.txt
 /venv/
 test*.*
 /db
-/__pycache__
+__pycache__

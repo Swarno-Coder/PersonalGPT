@@ -1,5 +1,5 @@
-from engine import takeCommand
-from Jarvis import call
+from PersonalGPT.engine import takeCommand
+from PersonalGPT.Jarvis import call
 
 while True:
     some = takeCommand()

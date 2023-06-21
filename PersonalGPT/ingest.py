@@ -8,10 +8,10 @@ from tqdm import tqdm
 from typing import List
 from glob import glob
 from multiprocessing import Pool
-from Jarvis import speak
+from .Jarvis import speak
 
 # import environment vars from env_vars.py file
-from env_vars import *
+from .env_vars import *
 
 chunk_size = 500
 chunk_overlap = 50

@@ -7,9 +7,9 @@ from langchain.llms import (
     Cohere,
     OpenAI
 )
-from env_vars import *
-from ingest import Ingest
-from Jarvis import takeCommand, speak
+from .env_vars import *
+from .ingest import Ingest
+from .Jarvis import takeCommand, speak
 
 class PersonalGPT(Ingest):
     """_summary_
