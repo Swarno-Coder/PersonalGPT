@@ -4,5 +4,5 @@ setup(
     name='PersonalGPT',
     version='0.1',
     packages=['PersonalGPT'],
-    install_requires=[],
+    install_requires=[pywhatkit],
 )
