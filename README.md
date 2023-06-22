@@ -1,5 +1,5 @@
 # PersonalGPT
-This is a personal assistant to whom you can ORDER or INSTRUCT to do some task or search something using your own VOICE.
+Your own GPT-powered Personal Assistant to whom you can ORDER or INSTRUCT to do some task or search for something using your VOICE commands.
 
 This project is Highly Inspired from perivateGPT
 ### Installing dependencies
