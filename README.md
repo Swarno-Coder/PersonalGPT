@@ -1,9 +1,9 @@
 # PersonalGPT
 Your own GPT-powered Personal Assistant to whom you can ORDER or INSTRUCT to do some task or search for something using your VOICE commands.
 Built with [LangChain](https://github.com/hwchase17/langchain), [GPT4All](https://github.com/nomic-ai/gpt4all), [LlamaCpp](https://github.com/ggerganov/llama.cpp), [Chroma](https://www.trychroma.com/) and [SentenceTransformers](https://www.sbert.net/).
-Also Supports OpenAI's GPT3, GPT4 model, Cohere.
+-Also Supports OpenAI's GPT3, GPT4 model, Cohere.
 
-This project is Highly Inspired from [privateGPT](https://github.com/imartinez/privateGPT) for GPT assistance making but this project uses [DeepLake VectorStores](https://github.com/activeloopai/deeplake) to store your dataset/files.
+This project is Highly Inspired by [privateGPT](https://github.com/imartinez/privateGPT) for GPT assistance making but this project uses [DeepLake VectorStores](https://github.com/activeloopai/deeplake) to store your dataset/files.
 
 # Installing dependencies
 
@@ -17,12 +17,12 @@ On Linux / Mac:
 ```
 # Setting Environment Variables
 
-Open the `env_ver.py`
+Open the `PersonalGPT/env_vars.py`
 
-and edit the variables appropriately in the `.env` file.
+and edit the variables appropriately in the `env_vars.py` file.
 
 ```
-MODEL_TYPE: supports LlamaCpp or GPT4All
+MODEL_TYPE: supports LlamaCpp, GPT4All, OpenAI & Cohere
 PERSIST_DIRECTORY: is the folder you want your vectorstore in
 MODEL_PATH: Path to your GPT4All or LlamaCpp supported LLM
 MODEL_N_CTX: Maximum token limit for the LLM model
@@ -51,9 +51,11 @@ The supported extensions are:
    - `.msg`: Outlook Message,
    - `.odt`: Open Document Text,
    - `.pdf`: Portable Document Format (PDF),
-   - `.pptx` : PowerPoint Document,
-   - `.ppt` : PowerPoint Document,
+   - `.pptx`: PowerPoint Document,
+   - `.ppt`: PowerPoint Document,
    - `.txt`: Text file (UTF-8),
+   - `.xls`: Excel Spreadsheet
+   - `.xlsx`: Excel Spreadsheet
 
 Give the following command to ingest all the data.
 
