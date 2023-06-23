@@ -31,8 +31,8 @@ from langchain.document_loaders import (
 )
 
 # Set model name and path
-MODEL_TYPE='GPT4All'
-API_KEY=None
+MODEL_TYPE='Cohere'
+API_KEY='n0oQcCiDDdduOa5R6p9f7Sluadpp5ckcIPJ7mMb3'
 MODEL='ggml-gpt4all-j-v1.3-groovy.bin'
 MODEL_PATH=f'models/{MODEL}'
 EMBEDDINGS_MODEL_NAME='all-MiniLM-L6-v2'

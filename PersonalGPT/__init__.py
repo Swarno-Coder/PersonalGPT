@@ -1,4 +1,4 @@
-from .__main__ import PersonalGPT
+from .main import *
 from .engine import *
 from .env_vars import *
 from .ingest import *
