@@ -19,9 +19,10 @@ class PersonalGPT(Ingest):
         Ingest (_type_): _description_
     """
     def __init__(self):
-        super(self).__init__()
+        super(Ingest,self).__init__()
         # activate/deactivate the streaming StdOut callback for LLMs
         callbacks = [StreamingStdOutCallbackHandler()]
+        self.FLAG=False
         # Prepare the LLM
         match MODEL_TYPE:
             case "LlamaCpp":
@@ -36,11 +37,11 @@ class PersonalGPT(Ingest):
             case _default:
                 print(f"Model {MODEL_TYPE} not supported!")
                 exit;
-    def from_my_docs(self):    
+    def from_my_docs(self, flag=True):    
         db = super().load()
         retriever = db.as_retriever(search_kwargs={"k": TARGET_SOURCE_CHUNKS})
         self.qa = RetrievalQA.from_chain_type(llm=self.llm, chain_type="stuff", retriever=retriever)
-        self.FLAG=True
+        self.FLAG=flag
     
     def ask_query(self):
     # Interactive questions and answers
@@ -48,7 +49,7 @@ class PersonalGPT(Ingest):
             query = takeCommand("Ask a query Master,")
             if query == "exit":
                 break
-    
+            #print(f"{self.llm}")
             # Get the answer from the chain
             if self.FLAG: res = self.qa.run(query)
             else: 

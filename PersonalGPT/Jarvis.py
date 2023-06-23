@@ -6,7 +6,7 @@ from os import *
 import pywhatkit
 import sys
 from .engine import takeCommand, speak
-from main import PersonalGPT
+import PersonalGPT
 
 def wishme():
     speak('Hello Sir,')
