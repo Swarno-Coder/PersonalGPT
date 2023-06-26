@@ -8,6 +8,7 @@ from langchain.llms import (
     OpenAI
 )
 from langchain.embeddings import OpenAIEmbeddings
+from langchain import PromptTemplate
 from .env_vars import *
 from .ingest import Ingest
 from .Jarvis import takeCommand, speak
@@ -32,7 +33,6 @@ class PersonalGPT(Ingest):
             case "Cohere":
                 self.llm = Cohere(cohere_api_key=API_KEY, max_tokens=2000, callbacks=callbacks, verbose=False)
             case "OpenAI":
-                self.embeddings= OpenAIEmbeddings(openai_api_key=API_KEY)
                 self.llm = OpenAI(openai_api_key=API_KEY, temperature=0.7, max_tokens=256, callbacks=callbacks, verbose=False)
             case _default:
                 print(f"Model {MODEL_TYPE} not supported!")
@@ -53,7 +53,11 @@ class PersonalGPT(Ingest):
             # Get the answer from the chain
             if self.FLAG: res = self.qa.run(query)
             else: 
-                self.chain = LLMChain(llm=self.llm)
+                prompt = PromptTemplate(input_variables=['question'],
+                        template='''
+                        Question: {question}
+                        Answer: ''')
+                self.chain = LLMChain(llm=self.llm, prompt=prompt)
                 self.chain.run(query)
     
             # Speak the result

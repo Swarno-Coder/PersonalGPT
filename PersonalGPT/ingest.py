@@ -2,7 +2,7 @@
 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import DeepLake
-from langchain.embeddings import HuggingFaceInstructEmbeddings
+from langchain.embeddings import HuggingFaceInstructEmbeddings, OpenAIEmbeddings, CohereEmbeddings, LlamaCppEmbeddings
 from langchain.docstore.document import Document
 from tqdm import tqdm
 from typing import List
@@ -18,7 +18,15 @@ chunk_overlap = 50
 
 class Ingest:
     def __init__(self) -> None:
-        self.embeddings = HuggingFaceInstructEmbeddings(model_name=EMBEDDINGS_MODEL_NAME)
+        match MODEL_TYPE: 
+            case 'OpenAI':
+                self.embeddings= OpenAIEmbeddings(openai_api_key=API_KEY)
+            case 'Cohere':
+                self.embeddings = CohereEmbeddings(cohere_api_key=API_KEY)
+            case 'LlamaCpp':
+                self.embeddings = LlamaCppEmbeddings()
+            case _default_:
+                self.embeddings = HuggingFaceInstructEmbeddings(model_name=EMBEDDINGS_MODEL_NAME)
         
     def load_single_document(self, file_path: str) -> List[Document]:
         """Loads single document at a time
