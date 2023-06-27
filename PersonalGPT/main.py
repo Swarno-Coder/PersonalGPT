@@ -7,11 +7,10 @@ from langchain.llms import (
     Cohere,
     OpenAI
 )
-from langchain.embeddings import OpenAIEmbeddings
 from langchain import PromptTemplate
 from .env_vars import *
 from .ingest import Ingest
-from .Jarvis import takeCommand, speak
+from .engine import takeCommand, speak
 
 class PersonalGPT(Ingest):
     """_summary_
@@ -58,7 +57,7 @@ class PersonalGPT(Ingest):
                         Question: {question}
                         Answer: ''')
                 self.chain = LLMChain(llm=self.llm, prompt=prompt)
-                self.chain.run(query)
+                res = self.chain.run(query)
     
             # Speak the result
             speak(f"Question You've asked: {query} and the Answer is: {res}")

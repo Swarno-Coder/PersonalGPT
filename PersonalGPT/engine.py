@@ -29,12 +29,11 @@ def takeCommand(say):
     try:
         print('Recognizing')
         queryy = r.recognize_google(audios, language='en-IN')
-        print(f'User said : {queryy} \n')
     
     except Exception as e:
         print(e)
-        print('Say That again please... ')
         speak('Say That again please... ')
-        return 'None'
+        return e
     finally:
-        return (queryy.lower())
+        if queryy:
+            return (queryy.lower())
