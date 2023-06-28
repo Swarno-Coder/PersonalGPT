@@ -11,9 +11,9 @@ def speak(audio):
     engine.runAndWait()
 
 
-def takeCommand(say):
+def takeCommand(say=None):
     #This function takes command and recognize by google
-    speak(say)
+    if say: speak(say)
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print('Listening...')
@@ -29,11 +29,12 @@ def takeCommand(say):
     try:
         print('Recognizing')
         queryy = r.recognize_google(audios, language='en-IN')
-    
+        
     except Exception as e:
         print(e)
         speak('Say That again please... ')
         return e
     finally:
         if queryy:
+            print(queryy)
             return (queryy.lower())
