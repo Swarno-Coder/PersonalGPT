@@ -26,6 +26,7 @@ def takeCommand(say=None):
         '''
         r.adjust_for_ambient_noise(source)
         audios = r.listen(source)
+        
     try:
         print('Recognizing')
         queryy = r.recognize_google(audios, language='en-IN')
@@ -36,5 +37,7 @@ def takeCommand(say=None):
         return e
     finally:
         if queryy:
-            print(queryy)
+            print('~'+queryy)
             return (queryy.lower())
+        else:
+            return None

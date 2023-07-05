@@ -34,7 +34,7 @@ def call(query):
         speak('loading your files now')
         gpt = PersonalGPT()
         gpt.from_my_docs()
-    elif ('search my files now' or 'serach in gpt') in query:
+    elif ('search my files now' in query )or ('serach in gpt' in query) :
         gpt.ask_query()
     
     elif 'wikipedia' in query:
@@ -47,12 +47,16 @@ def call(query):
         queryy = query.replace('search','')
         link = f"https://www.google.com/search?q={queryy}"
         webbrowser.open(link)
+        
     elif 'open' in query:
         queryy = query.replace('open','')
-        if websites in queryy:
-            webbrowser.open(f'http://www.{queryy}.com/')
-        if apps in queryy:
-            startfile(f'{queryy}')
+        try:
+            if websites in queryy:
+                webbrowser.open(f'http://www.{queryy}.com/')
+            elif apps in queryy:
+                startfile(f'{queryy}')
+        except: print(f"{queryy} cant be opened now")
+        
     elif 'run speedtest' in query:
         webbrowser.open('https://www.speedtest.net/')
     elif 'time' in query:
@@ -75,14 +79,17 @@ def call(query):
         number = takeCommand('Tell me the number, Sir ')
         message = takeCommand('Tell me the message, Sir')
         pywhatkit.sendwhatmsg_instantly(number, message)
+        
     elif 'text to handwriting' in query:
         messege = takeCommand('tell the messege you want to convert')
         pywhatkit.text_to_handwriting(messege,'tth.png')
+        
     elif 'send mail' in query:
         name = takeCommand('send mail to whom?')
         messege = takeCommand('tell the messege')
         pywhatkit.send_mail(name,'',messege)
-    elif ('jokes' or 'joke') in query:
+        
+    elif 'joke' in query:
         joke = pyjokes.get_joke('en','neutral')
         speak(joke)
         choice = takeCommand("do you want one more?")
@@ -92,7 +99,7 @@ def call(query):
         speak('Taking screenshot')
         pywhatkit.take_screenshot()
     
-    elif ('end' or 'quit') in query:
+    elif ('end' in query) or ('quit' in query) :
         speak('quiting program')
         sys.exit(0)
     else:
