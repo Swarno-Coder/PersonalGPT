@@ -30,14 +30,6 @@ def takeCommand(say=None):
     try:
         print('Recognizing')
         queryy = r.recognize_google(audios, language='en-IN')
-        
+        return queryy.lower()
     except Exception as e:
-        print(e)
-        speak('Say That again please... ')
-        return e
-    finally:
-        if queryy:
-            print('~'+queryy)
-            return (queryy.lower())
-        else:
-            return None
+        return None
